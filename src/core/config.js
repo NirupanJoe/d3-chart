@@ -24,7 +24,20 @@ const config = {
 			sold: 15,
 		},
 	],
-
+	data1: [
+		{
+			product: 'carrot',
+			sold: 120,
+		},
+		{
+			product: 'cabbage',
+			sold: 30,
+		},
+		{
+			product: 'tomato',
+			sold: 65,
+		},
+	],
 };
 
 export default config;

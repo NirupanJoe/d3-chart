@@ -8,6 +8,7 @@ const App = (context) => {
 	return (
 		<div className="App" role="App">
 			<BarChart { ...{ ...context, data: config.data } }/>
+			<BarChart { ...{ ...context, data: config.data1 } }/>
 		</div>);
 };
 
