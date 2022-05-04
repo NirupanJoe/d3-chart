@@ -6,7 +6,7 @@ const config = {
 			bottom: 20,
 			left: 25,
 		},
-		xScale: {
+		xscale: {
 			padding: 0.2,
 		},
 	},

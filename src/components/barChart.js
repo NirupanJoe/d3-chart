@@ -4,7 +4,7 @@ import { React, useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 
 const barChart = (context) => {
-	const { config: { barChartProps: { width, height, xScale: { padding },
+	const { config: { barChartProps: { width, height, xscale: { padding },
 		margin: { bottom, left }}}, ref, data } = context;
 	const h = height - bottom;
 	const color = d3.scaleOrdinal(d3.schemeCategory10);
