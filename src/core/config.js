@@ -9,6 +9,8 @@ const config = {
 		xscale: {
 			padding: 0.2,
 		},
+		duration: 3000,
+		delay: 500,
 	},
 	pieChartProps: {
 		width: 350,

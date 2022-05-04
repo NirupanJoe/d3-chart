@@ -3,9 +3,10 @@ import { React, useEffect, useRef } from 'react';
 // eslint-disable-next-line id-match
 import * as d3 from 'd3';
 
+// eslint-disable-next-line max-statements
 const barChart = (context) => {
 	const { config: { barChartProps: { width, height, xscale: { padding },
-		margin: { bottom, left }}}, ref, data } = context;
+		duration, delay, margin: { bottom, left }}}, ref, data } = context;
 	const h = height - bottom;
 	const color = d3.scaleOrdinal(d3.schemeCategory10);
 	const svg = d3.select(ref.current);
@@ -27,9 +28,15 @@ const barChart = (context) => {
 		.attr('transform', `translate(${ left },0)`)
 		.attr('fill', (d) => color(d.product))
 		.attr('x', (d) => xScale(d.product))
-		.attr('y', (d) => yScale(d.sold))
+		.attr('y', () => yScale(0))
 		.attr('width', xScale.bandwidth())
-		.attr('height', (d) => h - yScale(d.sold));
+		.attr('height', () => h - yScale(0));
+
+	g.selectAll('rect').transition()
+		.duration(duration)
+		.attr('y', (d) => yScale(d.sold))
+		.attr('height', (d) => h - yScale(d.sold))
+		.delay((d, i) => i * delay);
 };
 
 const BarChart = (context) => {
