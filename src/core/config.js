@@ -10,6 +10,14 @@ const config = {
 			padding: 0.2,
 		},
 	},
+	pieChartProps: {
+		width: 350,
+		height: 350,
+		radius: {
+			outer: 150,
+			inner: 60,
+		},
+	},
 	data: [
 		{
 			product: 'orange',
