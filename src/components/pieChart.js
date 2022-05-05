@@ -7,7 +7,7 @@ import * as d3 from 'd3';
 const pieChart = (context) => {
 	const { config: { pieChartProps: { radius: { inner, outer }}},
 		ref, data } = context;
-	const createPie = d3.pie().value((d) => d.sold);
+	const createPie = d3.pie().value((d) => d.value);
 	const createArc = d3.arc()
 		.innerRadius(inner)
 		.outerRadius(outer);
@@ -36,7 +36,7 @@ const pieChart = (context) => {
 				.attr('x', '-2em')
 				.attr('fill', 'white')
 				.attr('fontSize', '12')
-				.text((d) => d.data.product))
+				.text((d) => d.data.label))
 		.call((text) =>
 			text
 				.append('tspan')
@@ -44,7 +44,7 @@ const pieChart = (context) => {
 				.attr('y', '-1em')
 				.attr('fill', 'white')
 				.attr('fontSize', '15')
-				.text((d) => d.data.sold));
+				.text((d) => d.data.value));
 };
 
 const PieChart = (context) => {
