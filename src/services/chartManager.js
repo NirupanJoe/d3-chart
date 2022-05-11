@@ -1,7 +1,7 @@
 import { map } from '@laufire/utils/collection';
 
 const ChartManager = {
-	getBarChartData: ({ config: { product }}) =>
+	productBarChartData: ({ config: { product }}) =>
 		product.map(({ product: label, ...props }) => ({
 			label: label,
 			value: map(props, (value, key) => ({
@@ -10,7 +10,7 @@ const ChartManager = {
 			})),
 		})),
 
-	getPieChartData: ({ config: { market }}) =>
+	marketPieChartData: ({ config: { market }}) =>
 		market.map(({ product, sold }) => ({
 			label: product,
 			value: sold,

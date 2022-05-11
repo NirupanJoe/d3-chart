@@ -5,12 +5,16 @@ import PieChart from './components/pieChart';
 import ChartManager from './services/chartManager';
 
 const App = (context) => {
-	const { getBarChartData, getPieChartData } = ChartManager;
+	const {
+		productBarChartData, marketPieChartData,
+	} = ChartManager;
 
 	return (
 		<div className="App" role="App">
-			<BarChart { ...{ ...context, data: getBarChartData(context) } }/>
-			<PieChart { ...{ ...context, data: getPieChartData(context) } }/>
+			<BarChart { ...{ ...context,
+				data: productBarChartData(context) } }
+			/>
+			<PieChart { ...{ ...context, data: marketPieChartData(context) } }/>
 		</div>);
 };
 

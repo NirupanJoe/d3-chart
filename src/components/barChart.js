@@ -25,7 +25,7 @@ const barChart = (context) => {
 		.domain(pick(data, 'label'));
 	const yScale = d3.scaleLinear().range([yHeight, bottom])
 		.domain([0, d3.max(data, ({ value }) =>
-			Math.max(...subgroups.map((key) => value[key].value)))]);
+			Math.max(...values(map(value, (d) => d.value))))]);
 	const g = svg.append('g');
 
 	const xSubgroup = d3.scaleBand()
