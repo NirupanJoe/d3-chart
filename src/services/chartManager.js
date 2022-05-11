@@ -1,12 +1,17 @@
-const ChartManager = {
-	getBarChartData: ({ config: { data }}) => data.map(({ product, sold }) => ({
-		label: product,
-		value: sold,
-	})),
+import { map } from '@laufire/utils/collection';
 
-	// eslint-disable-next-line id-match
-	getPieChartData: ({ config: { data1 }}) =>
-		data1.map(({ product, sold }) => ({
+const ChartManager = {
+	getBarChartData: ({ config: { product }}) =>
+		product.map(({ product: label, ...props }) => ({
+			label: label,
+			value: map(props, (value, key) => ({
+				key,
+				value,
+			})),
+		})),
+
+	getPieChartData: ({ config: { market }}) =>
+		market.map(({ product, sold }) => ({
 			label: product,
 			value: sold,
 		})),

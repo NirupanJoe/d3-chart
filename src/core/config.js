@@ -6,9 +6,10 @@ const config = {
 			bottom: 20,
 			left: 25,
 		},
-		xscale: {
+		xScale: {
 			padding: 0.2,
 		},
+		subBarPadding: 0.005,
 		duration: 3000,
 		delay: 500,
 	},
@@ -20,21 +21,27 @@ const config = {
 			inner: 60,
 		},
 	},
-	data: [
+	product: [
 		{
 			product: 'orange',
-			sold: 10,
+			weekOne: 10,
+			weekTwo: 200,
+			weekThree: 45,
 		},
 		{
 			product: 'apple',
-			sold: 30,
+			weekOne: 30,
+			weekTwo: 80,
+			weekThree: 45,
 		},
 		{
 			product: 'grape',
-			sold: 15,
+			weekOne: 15,
+			weekTwo: 54,
+			weekThree: 45,
 		},
 	],
-	data1: [
+	market: [
 		{
 			product: 'carrot',
 			sold: 120,
