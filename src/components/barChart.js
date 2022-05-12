@@ -26,6 +26,31 @@ const barChart = (context) => {
 	const yScale = d3.scaleLinear().range([yHeight, bottom])
 		.domain([0, d3.max(data, ({ value }) =>
 			Math.max(...values(map(value, (d) => d.value))))]);
+
+	const tooltip = d3.select('#tooltip')
+		.style('opacity', 0)
+		.style('position', 'absolute')
+		.style('background-color', 'white')
+		.style('border', '1px solid')
+		.style('border-radius', '5px')
+		.style('padding', '10px');
+
+	const mouseover = (event, d) => {
+		tooltip
+			.html(`${ d.key }: ${ d.value }`)
+			.style('opacity', 1);
+	};
+	const mousemove = (event) => {
+		const half = 2;
+
+		tooltip
+			.style('left', `${ event.x }px`)
+			.style('top', `${ event.y / half }px`);
+	};
+	const mouseleave = () => {
+		tooltip
+			.style('opacity', 0);
+	};
 	const g = svg.append('g').attr('transform', `translate(${ left }, ${ top } )`);
 
 	const xSubgroup = d3.scaleBand()
@@ -52,7 +77,10 @@ const barChart = (context) => {
 		.attr('x', (d) => xSubgroup(d.key))
 		.attr('y', () => yScale(0))
 		.attr('width', xSubgroup.bandwidth())
-		.attr('height', () => yHeight - yScale(0));
+		.attr('height', () => yHeight - yScale(0))
+		.on('mouseover', mouseover)
+		.on('mousemove', mousemove)
+		.on('mouseleave', mouseleave);
 
 	g.selectAll('rect').transition()
 		.duration(duration)
@@ -67,7 +95,10 @@ const BarChart = (context) => {
 	useEffect(() => barChart({ ...context, ref }));
 
 	return (
-		<svg ref={ ref }/>
+		<div>
+			<svg ref={ ref }/>
+			<div id="tooltip"/>
+		</div>
 	);
 };
 
