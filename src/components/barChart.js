@@ -11,11 +11,11 @@ const barChart = (context) => {
 		barChartProps: {
 			width, height, xScale: { padding },
 			duration, delay, subBarPadding,
-			margin: { bottom, left },
+			margin: { top, bottom, right, left },
 		},
 	}, ref, data } = context;
-	const xWidth = width - left;
-	const yHeight = height - bottom;
+	const xWidth = width - left - right;
+	const yHeight = height - bottom - top;
 	const color = d3.scaleOrdinal(d3.schemeCategory10);
 	const subgroups = data.length && keys(data[0].value);
 	const svg = d3.select(ref.current).attr('width', width)
@@ -26,18 +26,17 @@ const barChart = (context) => {
 	const yScale = d3.scaleLinear().range([yHeight, bottom])
 		.domain([0, d3.max(data, ({ value }) =>
 			Math.max(...values(map(value, (d) => d.value))))]);
-	const g = svg.append('g');
+	const g = svg.append('g').attr('transform', `translate(${ left }, ${ top } )`);
 
 	const xSubgroup = d3.scaleBand()
 		.domain(subgroups)
 		.range([0, xScale.bandwidth()])
 		.padding([subBarPadding]);
 
-	g.append('g').attr('transform', `translate(${ left }, ${ yHeight } )`)
+	g.append('g').attr('transform', `translate(${ 0 }, ${ yHeight } )`)
 		.call(d3.axisBottom(xScale));
 
 	g.append('g')
-		.attr('transform', `translate(${ left },0)`)
 		.call(d3.axisLeft(yScale));
 
 	g.append('g').selectAll('g')

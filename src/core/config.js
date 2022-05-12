@@ -3,8 +3,10 @@ const config = {
 		width: 500,
 		height: 500,
 		margin: {
-			bottom: 20,
-			left: 25,
+			bottom: 30,
+			left: 55,
+			top: 10,
+			right: 10,
 		},
 		xScale: {
 			padding: 0.2,
