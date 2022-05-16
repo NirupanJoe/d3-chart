@@ -71,32 +71,19 @@ const barChart = (context) => {
 		.selectAll('rect')
 		.data((d) => values(map(d.value, (value) => value)));
 
-	bar.join('rect')
-		.attr('fill', (d) => color(d.key))
-		.attr('x', (d) => xSubgroup(d.key))
-		.attr('y', () => yScale(0))
-		.attr('width', xSubgroup.bandwidth())
-		.attr('height', () => yHeight - yScale(0))
-		.on('mouseover', mouseover)
-		.on('mousemove', mousemove)
-		.on('mouseleave', mouseleave);
-
 	const radius = xSubgroup.bandwidth() / half;
 
 	bar.join('circle').attr('fill', (d) => color(d.key))
 		.attr('cx', (d) => xSubgroup(d.key) + radius)
 		.attr('cy', () => yHeight - yScale(0))
-		.attr('r', radius);
-
-	g.selectAll('rect').transition()
-		.duration(duration)
-		.attr('y', (d) => yScale(d.value))
-		.attr('height', (d) => yHeight - yScale(d.value))
-		.delay((d, i) => i * delay);
+		.attr('r', radius)
+		.on('mouseover', mouseover)
+		.on('mousemove', mousemove)
+		.on('mouseleave', mouseleave);
 
 	g.selectAll('circle').transition()
 		.duration(duration)
-		.attr('cy', (d) => yScale(d.value) - radius)
+		.attr('cy', (d) => yScale(d.value))
 		.delay((d, i) => i * delay);
 };
 
