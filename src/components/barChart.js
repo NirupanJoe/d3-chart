@@ -5,6 +5,8 @@ import * as d3 from 'd3';
 import { map, pick, values } from '@laufire/utils/collection';
 import { keys } from '@laufire/utils/lib';
 
+const half = 2;
+
 // eslint-disable-next-line max-statements
 const barChart = (context) => {
 	const { config: {
@@ -41,8 +43,6 @@ const barChart = (context) => {
 			.style('opacity', 1);
 	};
 	const mousemove = (event) => {
-		const half = 2;
-
 		tooltip
 			.style('left', `${ event.x }px`)
 			.style('top', `${ event.y / half }px`);
@@ -64,15 +64,14 @@ const barChart = (context) => {
 	g.append('g')
 		.call(d3.axisLeft(yScale));
 
-	g.append('g').selectAll('g')
+	const bar = g.append('g').selectAll('g')
 		.data(data)
-		.enter()
-		.append('g')
+		.join('g')
 		.attr('transform', (d) => `translate(${ xScale(d.label) }, 0)`)
 		.selectAll('rect')
-		.data((d) => values(map(d.value, (value) => value)))
-		.enter()
-		.append('rect')
+		.data((d) => values(map(d.value, (value) => value)));
+
+	bar.join('rect')
 		.attr('fill', (d) => color(d.key))
 		.attr('x', (d) => xSubgroup(d.key))
 		.attr('y', () => yScale(0))
@@ -82,10 +81,22 @@ const barChart = (context) => {
 		.on('mousemove', mousemove)
 		.on('mouseleave', mouseleave);
 
+	const radius = xSubgroup.bandwidth() / half;
+
+	bar.join('circle').attr('fill', (d) => color(d.key))
+		.attr('cx', (d) => xSubgroup(d.key) + radius)
+		.attr('cy', () => yHeight - yScale(0))
+		.attr('r', radius);
+
 	g.selectAll('rect').transition()
 		.duration(duration)
 		.attr('y', (d) => yScale(d.value))
 		.attr('height', (d) => yHeight - yScale(d.value))
+		.delay((d, i) => i * delay);
+
+	g.selectAll('circle').transition()
+		.duration(duration)
+		.attr('cy', (d) => yScale(d.value) - radius)
 		.delay((d, i) => i * delay);
 };
 
