@@ -15,6 +15,22 @@ const config = {
 		duration: 1000,
 		delay: 100,
 	},
+	barAndLineChartProps: {
+		width: 500,
+		height: 500,
+		margin: {
+			bottom: 30,
+			left: 55,
+			top: 10,
+			right: 10,
+		},
+		xScale: {
+			padding: 0.3,
+		},
+		lineStrokeWidth: 3,
+		duration: 1000,
+		delay: 100,
+	},
 	pieChartProps: {
 		width: 350,
 		height: 350,
@@ -55,6 +71,20 @@ const config = {
 		{
 			product: 'tomato',
 			sold: 65,
+		},
+	],
+	population: [
+		{
+			country: 'US',
+			population: 60,
+		},
+		{
+			country: 'Cuba',
+			population: 47,
+		},
+		{
+			country: 'Russia',
+			population: 24,
 		},
 	],
 };

@@ -1,12 +1,13 @@
 import { React } from 'react';
 import './App.scss';
-import BarChart from './components/barChart';
-import PieChart from './components/pieChart';
+import BarChart from './components/bar/barChart';
+import BarAndLineChart from './components/bar/barAndLineChart';
 import ChartManager from './services/chartManager';
 
 const App = (context) => {
 	const {
-		productBarChartData, marketPieChartData,
+		productBarChartData,
+		populationBarChartData,
 	} = ChartManager;
 
 	return (
@@ -14,7 +15,9 @@ const App = (context) => {
 			<BarChart { ...{ ...context,
 				data: productBarChartData(context) } }
 			/>
-			<PieChart { ...{ ...context, data: marketPieChartData(context) } }/>
+			<BarAndLineChart { ...{ ...context,
+				data: populationBarChartData(context) } }
+			/>
 		</div>);
 };
 

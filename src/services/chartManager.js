@@ -15,6 +15,12 @@ const ChartManager = {
 			label: product,
 			value: sold,
 		})),
+
+	populationBarChartData: ({ config: { population }}) =>
+		population.map(({ country: label, population: value }) => ({
+			label,
+			value,
+		})),
 };
 
 export default ChartManager;
