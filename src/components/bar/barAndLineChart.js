@@ -17,7 +17,7 @@ const barAndLineChart = (context) => {
 	}, ref, data } = context;
 	const xWidth = width - left - right;
 	const yHeight = height - bottom - top;
-	const color = d3.scaleOrdinal(d3.schemeCategory10);
+	const color = d3.scaleOrdinal(d3.schemeSet2);
 	const svg = d3.select(ref.current).attr('width', width)
 		.attr('height', height);
 	const xScale = d3.scaleBand().range([0, xWidth])
