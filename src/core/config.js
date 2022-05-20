@@ -1,7 +1,7 @@
 const config = {
 	barChartProps: {
-		width: 500,
-		height: 500,
+		width: 300,
+		height: 300,
 		margin: {
 			bottom: 30,
 			left: 55,
@@ -16,8 +16,8 @@ const config = {
 		delay: 100,
 	},
 	barAndLineChartProps: {
-		width: 500,
-		height: 500,
+		width: 300,
+		height: 300,
 		margin: {
 			bottom: 30,
 			left: 55,

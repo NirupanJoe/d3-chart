@@ -3,6 +3,7 @@ import './App.scss';
 import BarChart from './components/bar/barChart';
 import BarAndLineChart from './components/bar/barAndLineChart';
 import ChartManager from './services/chartManager';
+import HorizontalBar from './components/bar/HorizontalBar';
 
 const App = (context) => {
 	const {
@@ -16,6 +17,9 @@ const App = (context) => {
 				data: productBarChartData(context) } }
 			/>
 			<BarAndLineChart { ...{ ...context,
+				data: populationBarChartData(context) } }
+			/>
+			<HorizontalBar { ...{ ...context,
 				data: populationBarChartData(context) } }
 			/>
 		</div>);
