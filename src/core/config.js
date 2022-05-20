@@ -1,3 +1,7 @@
+/* eslint-disable no-magic-numbers */
+import { range, map } from '@laufire/utils/collection';
+import { rndBetween, rndString } from '@laufire/utils/random';
+
 const config = {
 	barChartProps: {
 		width: 300,
@@ -32,8 +36,8 @@ const config = {
 		delay: 100,
 	},
 	pieChartProps: {
-		width: 350,
-		height: 350,
+		width: 300,
+		height: 300,
 		radius: {
 			outer: 150,
 			inner: 60,
@@ -73,20 +77,10 @@ const config = {
 			sold: 65,
 		},
 	],
-	population: [
-		{
-			country: 'US',
-			population: 60,
-		},
-		{
-			country: 'Cuba',
-			population: 47,
-		},
-		{
-			country: 'Russia',
-			population: 24,
-		},
-	],
+	population: map(range(0, 8), () => ({
+		country: rndString(),
+		population: rndBetween(0, 60),
+	})),
 };
 
 export default config;
