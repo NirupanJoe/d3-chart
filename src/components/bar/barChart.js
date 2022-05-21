@@ -18,7 +18,9 @@ const barChart = (context) => {
 	}, ref, data } = context;
 	const xWidth = width - left - right;
 	const yHeight = height - bottom - top;
-	const color = d3.scaleOrdinal(d3.schemeCategory10);
+	const color = d3.scaleOrdinal()
+		.range(d3.schemeCategory10)
+		.domain([pick(data, 'label')]);
 	const subgroups = data.length && keys(data[0].value);
 	const svg = d3.select(ref.current).attr('width', width)
 		.attr('height', height);
@@ -69,11 +71,13 @@ const barChart = (context) => {
 		.join('g')
 		.attr('transform', (d) => `translate(${ xScale(d.label) }, 0)`)
 		.selectAll('rect')
-		.data((d) => values(map(d.value, (value) => value)));
+		.data((d) => values(map(d.value, (value) => ({
+			...value, label: d.label,
+		}))));
 
 	const radius = xSubgroup.bandwidth() / half;
 
-	bar.join('circle').attr('fill', (d) => color(d.key))
+	bar.join('circle').attr('fill', (d) => color(d.label))
 		.attr('cx', (d) => xSubgroup(d.key) + radius)
 		.attr('cy', () => yHeight - yScale(0))
 		.attr('r', radius)
