@@ -53,10 +53,10 @@ const CreateRadarChart = (context) => {
 		.data(d3.range(0, levels + 1))
 		.join('text')
 		.attr('class', 'axisLabel')
-		.attr('x', (d) => (-d * radius) / levels)
+		.attr('x', (d) => (d * radius) / levels)
 		.attr('y', 6)
 		.attr('dy', '0.2em')
-		.style('font-size', '10px')
+		.style('font-size', '8px')
 		.attr('fill', '#474444')
 		.text((d) => format((maxValue * d) / levels));
 
