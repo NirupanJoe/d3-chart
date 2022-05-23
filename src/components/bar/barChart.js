@@ -20,7 +20,7 @@ const barChart = (context) => {
 	const yHeight = height - bottom - top;
 	const color = d3.scaleOrdinal()
 		.range(d3.schemeCategory10)
-		.domain([pick(data, 'label')]);
+		.domain(pick(data, 'label'));
 	const subgroups = data.length && keys(data[0].value);
 	const svg = d3.select(ref.current).attr('width', width)
 		.attr('height', height);
