@@ -4,8 +4,10 @@ import BarChart from './components/bar/barChart';
 import BarAndLineChart from './components/bar/barAndLineChart';
 import ChartManager from './services/chartManager';
 import HorizontalBar from './components/bar/HorizontalBar';
+import RadarChart from './components/radar';
 
 const App = (context) => {
+	const { config } = context;
 	const {
 		productBarChartData,
 		populationBarChartData,
@@ -22,6 +24,7 @@ const App = (context) => {
 			<HorizontalBar { ...{ ...context,
 				data: populationBarChartData(context) } }
 			/>
+			<RadarChart { ...{ ...context, data: config.smartPhones } }/>
 		</div>);
 };
 
