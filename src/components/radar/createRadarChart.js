@@ -1,3 +1,4 @@
+/* eslint-disable no-magic-numbers */
 /* eslint-disable max-statements */
 // eslint-disable-next-line id-match
 import * as d3 from 'd3';
@@ -52,9 +53,9 @@ const CreateRadarChart = (context) => {
 		.data(d3.range(0, levels + 1))
 		.join('text')
 		.attr('class', 'axisLabel')
-		.attr('x', 1)
-		.attr('y', (d) => (-d * radius) / levels)
-		.attr('dy', '0.4em')
+		.attr('x', (d) => (-d * radius) / levels)
+		.attr('y', 6)
+		.attr('dy', '0.2em')
 		.style('font-size', '10px')
 		.attr('fill', '#474444')
 		.text((d) => format((maxValue * d) / levels));
