@@ -14,7 +14,7 @@ const CreateRadarChart = (context) => {
 	} = context;
 	const {
 		width, height, margin: { left, right, top, bottom }, levels,
-		opacityCircles,
+		opacityCircles, labelFactor,
 	} = option;
 	const xWidth = width - left - right;
 	const yHeight = height - top - bottom;
@@ -71,6 +71,16 @@ const CreateRadarChart = (context) => {
 		* Math.sin((angleSlice * i) - (Math.PI / two)))
 		.style('stroke-width', '2px')
 		.style('stroke', 'white');
+
+	axis.append('text')
+		.style('font-size', '1.2vMin')
+		.attr('text-anchor', 'middle')
+		.attr('dy', '1%')
+		.attr('x', (d, i) => rScale(maxValue * labelFactor)
+		* Math.cos((angleSlice * i) - (Math.PI / 2)))
+		.attr('y', (d, i) => rScale(maxValue * labelFactor)
+		* Math.sin((angleSlice * i) - (Math.PI / 2)))
+		.text((d) => d);
 };
 
 export default CreateRadarChart;

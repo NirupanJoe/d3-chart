@@ -86,7 +86,7 @@ const config = {
 	radarChartOptions: {
 		width: 350,
 		height: 350,
-		margin: { top: 20, right: 20, bottom: 20, left: 20 },
+		margin: { top: 20, right: 30, bottom: 20, left: 30 },
 		levels: 5,
 		maxValue: 0.5,
 		labelFactor: 1.25,
