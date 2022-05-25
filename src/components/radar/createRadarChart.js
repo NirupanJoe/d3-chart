@@ -14,7 +14,7 @@ const CreateRadarChart = (context) => {
 	} = context;
 	const {
 		width, height, margin: { left, right, top, bottom }, levels,
-		opacityCircles, labelFactor,
+		opacityCircles, opacityArea, strokeWidth, labelFactor,
 	} = option;
 	const xWidth = width - left - right;
 	const yHeight = height - top - bottom;
@@ -22,6 +22,7 @@ const CreateRadarChart = (context) => {
 	const yMargin = (top + bottom) / two;
 	const radius = Math.min((xWidth / two) - xMargin
 		, (yHeight / two) - yMargin);
+	const color = d3.scaleOrdinal(d3.schemeCategory10);
 	const gx = (xWidth / two) + xMargin;
 	const gy = (yHeight / two) + yMargin;
 	const format = d3.format('.0%');
@@ -31,7 +32,6 @@ const CreateRadarChart = (context) => {
 	const rScale = d3.scaleLinear().range([0, radius])
 		.domain([0, maxValue]);
 	const angleSlice = Math.PI * two / allAxis.length;
-
 	const svg = d3.select(ref.current).attr('width', width)
 		.attr('height', height);
 
@@ -81,6 +81,43 @@ const CreateRadarChart = (context) => {
 		.attr('y', (d, i) => rScale(maxValue * labelFactor)
 		* Math.sin((angleSlice * i) - (Math.PI / 2)))
 		.text((d) => d);
+	const radarLine = d3.lineRadial()
+		.curve(d3.curveCardinalClosed)
+		.radius((d) => rScale(d.value))
+		.angle((d, i) => i * angleSlice);
+
+	const blobWrapper = g.selectAll().data(data)
+		.join('g');
+
+	const mouseover = () => {
+		svg.selectAll('.radarArea').transition()
+			.duration(200)
+			.style('fill-opacity', 0.7);
+		// d3.select('path').transition()
+		// 	.duration(200)
+		// 	.style('fill-opacity', 0.7);
+	};
+	const mouseout = () => {
+		svg.selectAll('.radarArea')
+			.transition()
+			.duration(200)
+			.style('fill-opacity', opacityArea);
+	};
+
+	blobWrapper.append('path').data(data)
+		.attr('d', (d) => radarLine(d.axes))
+		.attr('class', 'radarArea')
+		.style('fill', (d, i) => color(i))
+		.style('fill-opacity', opacityArea)
+		.on('mouseover', mouseover)
+		.on('mouseout', mouseout);
+
+	blobWrapper
+		.append('path')
+		.attr('d', (d) => radarLine(d.axes))
+		.style('stroke-width', `${ strokeWidth }px`)
+		.style('stroke', (d, i) => color(i))
+		.style('fill', 'none');
 };
 
 export default CreateRadarChart;
