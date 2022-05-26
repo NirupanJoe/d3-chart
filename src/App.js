@@ -6,6 +6,7 @@ import ChartManager from './services/chartManager';
 import HorizontalBar from './components/bar/HorizontalBar';
 import RadarChart from './components/radar';
 import ReChartBar from './components/bar/reChartBar';
+import ReChartRadar from './components/radar/reChartRadar';
 
 // eslint-disable-next-line max-lines-per-function
 const App = (context) => {
@@ -29,6 +30,9 @@ const App = (context) => {
 			/>
 			<RadarChart { ...{ ...context, data: config.smartPhones } }/>
 			<ReChartBar { ...{ ...context,
+				data: productRechartBarData(context) } }
+			/>
+			<ReChartRadar { ...{ ...context,
 				data: productRechartBarData(context) } }
 			/>
 		</div>);
