@@ -21,6 +21,12 @@ const ChartManager = {
 			label,
 			value,
 		})),
+
+	productRechartBarData: ({ config: { product }}) =>
+		product.map(({ product: label, ...props }) => ({
+			label: label,
+			value: { ...props },
+		})),
 };
 
 export default ChartManager;

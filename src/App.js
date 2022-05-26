@@ -5,12 +5,15 @@ import BarAndLineChart from './components/bar/barAndLineChart';
 import ChartManager from './services/chartManager';
 import HorizontalBar from './components/bar/HorizontalBar';
 import RadarChart from './components/radar';
+import ReChartBar from './components/bar/reChartBar';
 
+// eslint-disable-next-line max-lines-per-function
 const App = (context) => {
 	const { config } = context;
 	const {
 		productBarChartData,
 		populationBarChartData,
+		productRechartBarData,
 	} = ChartManager;
 
 	return (
@@ -25,6 +28,9 @@ const App = (context) => {
 				data: populationBarChartData(context) } }
 			/>
 			<RadarChart { ...{ ...context, data: config.smartPhones } }/>
+			<ReChartBar { ...{ ...context,
+				data: productRechartBarData(context) } }
+			/>
 		</div>);
 };
 
