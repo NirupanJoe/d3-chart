@@ -1,3 +1,5 @@
-const seed = {};
+const seed = {
+	region: [],
+};
 
 export default seed;

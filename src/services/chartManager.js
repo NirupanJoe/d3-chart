@@ -1,4 +1,4 @@
-import { map } from '@laufire/utils/collection';
+import { map, values } from '@laufire/utils/collection';
 
 const ChartManager = {
 	productBarChartData: ({ config: { product }}) =>
@@ -27,6 +27,19 @@ const ChartManager = {
 			label: label,
 			value: { ...props },
 		})),
+
+	regionRechartPieData: (data) => {
+		const getRegion = data.map(({ region }) => region.value)
+			.reduce((prev, cur) => ({
+				...prev,
+				[cur]: (prev[cur] || 0) + 1,
+			}), {});
+
+		return values(map(getRegion, (value, key) => ({
+			name: key,
+			value: value,
+		})));
+	},
 };
 
 export default ChartManager;

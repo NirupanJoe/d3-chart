@@ -36,12 +36,14 @@ const config = {
 		delay: 100,
 	},
 	pieChartProps: {
-		width: 300,
-		height: 300,
+		width: 500,
+		height: 500,
 		radius: {
 			outer: 150,
 			inner: 60,
 		},
+		pieFill: '#8884d8',
+		labelFill: '#fff',
 	},
 	product: [
 		{
