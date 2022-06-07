@@ -38,6 +38,7 @@ const config = {
 	pieChartProps: {
 		width: 500,
 		height: 500,
+		margin: 150,
 		radius: {
 			outer: 150,
 			inner: 60,

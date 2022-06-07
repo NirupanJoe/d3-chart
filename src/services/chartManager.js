@@ -38,6 +38,7 @@ const ChartManager = {
 		return values(map(getRegion, (value, key) => ({
 			name: key,
 			value: value,
+			label: key,
 		})));
 	},
 };

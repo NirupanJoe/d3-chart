@@ -8,6 +8,7 @@ import RadarChart from './components/radar';
 import ReChartBar from './components/bar/reChartBar';
 import ReChartRadar from './components/radar/reChartRadar';
 import ReChartPie from './components/pie/reChartPie';
+import PieChart from './components/pie/pieChart';
 
 // eslint-disable-next-line max-lines-per-function
 const App = (context) => {
@@ -19,10 +20,6 @@ const App = (context) => {
 		regionRechartPieData,
 	} = ChartManager;
 
-	// eslint-disable-next-line no-console
-	console.log(region);
-	// eslint-disable-next-line no-console
-	console.log(regionRechartPieData(region));
 	return (
 		<div className="App" role="App">
 			<BarChart { ...{ ...context,
@@ -42,6 +39,10 @@ const App = (context) => {
 				data: productRechartBarData(context) } }
 			/>
 			<ReChartPie
+				{ ...{ ...context,
+					data: regionRechartPieData(region) } }
+			/>
+			<PieChart
 				{ ...{ ...context,
 					data: regionRechartPieData(region) } }
 			/>
