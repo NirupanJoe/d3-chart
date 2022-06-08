@@ -1,10 +1,10 @@
 /* eslint-disable id-match */
-/* eslint-disable no-magic-numbers */
 /* eslint-disable max-lines-per-function */
 import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 
 const two = 2;
+const ten = 10;
 
 // eslint-disable-next-line max-statements
 const pieChart = (context) => {
@@ -56,7 +56,7 @@ const pieChart = (context) => {
 			const posB = outerArc.centroid(d);
 			const posC = outerArc.centroid(d);
 
-			posC[0] = radius * (midAngle(d) < Math.PI ? 1 : -1);
+			posC[0] = radius * (midAngle(d) < Math.PI ? 1 : '-1');
 			return [posA, posB, posC];
 		});
 
@@ -65,11 +65,34 @@ const pieChart = (context) => {
 		.attr('transform', (d) => {
 			const pos = outerArc.centroid(d);
 
-			pos[0] = radius * (midAngle(d) < Math.PI ? 1 : -1);
+			pos[0] = radius * (midAngle(d) < Math.PI ? 1 : '-1');
 			return `translate(${ pos })`;
 		})
 		.style('font-size', '1.5vMin')
 		.style('text-anchor', (d) => (midAngle(d) < Math.PI ? 'start' : 'end'));
+
+	const legend = svg.append('g').attr('transform',
+		`translate(${ 0 },${ ten })`);
+
+	legend
+		.selectAll('rect')
+		.data(data)
+		.join('rect')
+		.attr('x', ten)
+		.attr('y', (d, i) => i * (ten * two))
+		.attr('width', ten)
+		.attr('height', ten)
+		.style('fill', (d, i) => colors(i));
+
+	legend
+		.selectAll('text')
+		.data(data)
+		.join('text')
+		.attr('x', (ten * two) + ten)
+		.attr('y', (d, i) => (i * (ten * two)) + ten)
+		.attr('font-size', '15px')
+		.attr('fill', '#000')
+		.text((d) => d.label);
 };
 
 const PieChart = (context) => {
