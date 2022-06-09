@@ -29,11 +29,37 @@ const pieChart = (context) => {
 	const g = svg.append('g').attr('class', 'parent')
 		.attr('transform', `translate(${ width / two }, ${ height / two })`);
 
+	const tooltip = d3.select('#tooltip')
+		.style('opacity', 0)
+		.style('position', 'absolute')
+		.style('background-color', 'white')
+		.style('border', '1px solid')
+		.style('border-radius', '5px')
+		.style('padding', '10px');
+
+	const mouseover = (event, d) => {
+		tooltip
+			.html(`${ d.data.label }: ${ d.value }`)
+			.style('opacity', 1);
+	};
+	const mousemove = (event) => {
+		tooltip
+			.style('left', `${ event.x }px`)
+			.style('top', `${ event.pageY }px`);
+	};
+	const mouseleave = () => {
+		tooltip
+			.style('opacity', 0);
+	};
+
 	const arcs = g
 		.selectAll()
 		.data(createPie(data))
 		.join('g')
-		.attr('class', 'arc');
+		.attr('class', 'arc')
+		.on('mouseover', mouseover)
+		.on('mousemove', mousemove)
+		.on('mouseleave', mouseleave);
 
 	arcs
 		.append('path')
