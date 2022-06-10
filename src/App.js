@@ -10,6 +10,7 @@ import ReChartRadar from './components/radar/reChartRadar';
 import ReChartPie from './components/pie/reChartPie';
 import PieChart from './components/pie/pieChart';
 import HeatMap from './components/heatMap';
+import ToolTip from './components/tooltip/index.js';
 
 // eslint-disable-next-line max-lines-per-function
 const App = (context) => {
@@ -49,6 +50,7 @@ const App = (context) => {
 					data: regionRechartPieData(region) } }
 			/>
 			<HeatMap { ...{ ...context, data: heatMapData(context) } }/>
+			<ToolTip/>
 		</div>);
 };
 

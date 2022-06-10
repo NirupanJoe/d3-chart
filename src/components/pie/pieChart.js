@@ -29,13 +29,7 @@ const pieChart = (context) => {
 	const g = svg.append('g').attr('class', 'parent')
 		.attr('transform', `translate(${ width / two }, ${ height / two })`);
 
-	const tooltip = d3.select('#tooltip')
-		.style('opacity', 0)
-		.style('position', 'absolute')
-		.style('background-color', 'white')
-		.style('border', '1px solid')
-		.style('border-radius', '5px')
-		.style('padding', '10px');
+	const tooltip = d3.select('#tooltip');
 
 	const mouseover = (event, d) => {
 		tooltip

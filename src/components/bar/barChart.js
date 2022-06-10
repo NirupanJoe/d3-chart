@@ -31,13 +31,7 @@ const barChart = (context) => {
 		.domain([0, d3.max(data, ({ value }) =>
 			Math.max(...values(map(value, (d) => d.value))))]);
 
-	const tooltip = d3.select('#tooltip')
-		.style('opacity', 0)
-		.style('position', 'absolute')
-		.style('background-color', 'white')
-		.style('border', '1px solid')
-		.style('border-radius', '5px')
-		.style('padding', '10px');
+	const tooltip = d3.select('#tooltip');
 
 	const mouseover = (event, d) => {
 		tooltip
@@ -97,10 +91,7 @@ const BarChart = (context) => {
 	useEffect(() => barChart({ ...context, ref }));
 
 	return (
-		<div>
-			<svg ref={ ref }/>
-			<div id="tooltip"/>
-		</div>
+		<svg ref={ ref }/>
 	);
 };
 
