@@ -41,6 +41,13 @@ const ChartManager = {
 			label: key,
 		})));
 	},
+
+	heatMapData: ({ config: { heatMapData }}) =>
+		heatMapData.map(({ group: xLabel, variable: yLabel, value }) => ({
+			xLabel,
+			yLabel,
+			value,
+		})),
 };
 
 export default ChartManager;

@@ -9,6 +9,7 @@ import ReChartBar from './components/bar/reChartBar';
 import ReChartRadar from './components/radar/reChartRadar';
 import ReChartPie from './components/pie/reChartPie';
 import PieChart from './components/pie/pieChart';
+import HeatMap from './components/heatMap';
 
 // eslint-disable-next-line max-lines-per-function
 const App = (context) => {
@@ -18,6 +19,7 @@ const App = (context) => {
 		populationBarChartData,
 		productRechartBarData,
 		regionRechartPieData,
+		heatMapData,
 	} = ChartManager;
 
 	return (
@@ -46,7 +48,7 @@ const App = (context) => {
 				{ ...{ ...context,
 					data: regionRechartPieData(region) } }
 			/>
-
+			<HeatMap { ...{ ...context, data: heatMapData(context) } }/>
 		</div>);
 };
 
