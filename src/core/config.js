@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 /* eslint-disable no-magic-numbers */
 import { range, map } from '@laufire/utils/collection';
 import { rndBetween, rndString } from '@laufire/utils/random';
@@ -255,6 +256,100 @@ const config = {
 		{ group: 'J', variable: 'v9', value: 97 },
 		{ group: 'J', variable: 'v10', value: 0 },
 	],
+
+	treeMapProps: {
+		width: 600,
+		height: 400,
+		fontSize: 12,
+		margin: {
+			top: 30,
+			bottom: 30,
+			left: 30,
+			right: 30,
+		},
+	},
+
+	treeMapData: {
+		name: 'Celtics',
+		children: [
+			{
+				name: 'Guards',
+				children: [
+					{
+						category: 'Guards',
+						name: 'Kemba Walker',
+						value: 20.4,
+					},
+					{
+						category: 'Guards',
+						name: 'Marcus Smart',
+						value: 12.9,
+					},
+					{
+						category: 'Guards',
+						name: 'Brad Wanamaker',
+						value: 6.9,
+					},
+					{
+						category: 'Guards',
+						name: 'Tremont Waters',
+						value: 3.6,
+					},
+					{
+						category: 'Guards',
+						name: 'Carsen Edwards',
+						value: 3.3,
+					},
+					{
+						category: 'Guards',
+						name: 'Romeo Langford',
+						value: 2.5,
+					},
+				],
+			},
+			{
+				name: 'Forwards',
+				children: [
+					{
+						category: 'Forwards',
+						name: 'Jayson Tatum',
+						value: 23.4,
+					},
+					{
+						category: 'Forwards',
+						name: 'Jaylen Brown',
+						value: 20.3,
+					},
+					{
+						category: 'Forwards',
+						name: 'Gordon Hayward',
+						value: 17.5,
+					},
+					{
+						category: 'Forwards',
+						name: 'Grant Williams',
+						value: 3.4,
+					},
+					{
+						category: 'Forwards',
+						name: 'Javonte Green',
+						value: 3.4,
+					},
+					{
+						category: 'Forwards',
+						name: 'Semi Ojeleye',
+						value: 3.4,
+					},
+					{
+						category: 'Forwards',
+						name: 'Vincent Poirier',
+						value: 1.9,
+					},
+				],
+			},
+		],
+	},
+
 };
 
 export default config;
