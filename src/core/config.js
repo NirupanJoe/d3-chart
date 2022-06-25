@@ -261,11 +261,12 @@ const config = {
 		width: 600,
 		height: 400,
 		fontSize: 12,
+		radius: 6,
 		margin: {
 			top: 30,
 			bottom: 30,
-			left: 30,
-			right: 30,
+			left: 50,
+			right: 50,
 		},
 	},
 

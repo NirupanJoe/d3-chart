@@ -23,5 +23,20 @@ body {
 		padding: 5px;
 		opacity: 0;
 	}
+
+	.node {
+		cursor: pointer;
+	}
+	.node circle {
+		fill: #fff;
+		stroke: steelblue;
+		stroke-width: 3px;
+	}
+
+	.link {
+		fill: none;
+		stroke: #ccc;
+		stroke-width: 2px;
+	}
 }
 }

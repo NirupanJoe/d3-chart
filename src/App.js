@@ -12,6 +12,7 @@ import PieChart from './components/pie/pieChart';
 import HeatMap from './components/heatMap';
 import ToolTip from './components/tooltip/index.js';
 import TreeMap from './components/treeMap';
+import TreeMapChart from './components/treeMap/treeMapChart';
 
 // eslint-disable-next-line max-lines-per-function
 const App = (context) => {
@@ -52,6 +53,7 @@ const App = (context) => {
 			/>
 			<HeatMap { ...{ ...context, data: heatMapData(context) } }/>
 			<TreeMap { ...{ ...context, data: config.treeMapData } }/>
+			<TreeMapChart { ...{ ...context, data: config.treeMapData } }/>
 			<ToolTip/>
 		</div>);
 };
